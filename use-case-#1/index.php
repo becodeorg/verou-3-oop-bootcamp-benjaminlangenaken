@@ -10,6 +10,9 @@ error_reporting(E_ALL);
 // Array method
 //======================================================================================================================
 
+echo 'Use Case #1:'.'<br>';
+echo '<br>';
+
 // Create basket
 $basketItems = [
     ['product' => 'banana', 'amount' => 6, 'price' => 1, 'vat' => 0.06],
@@ -47,9 +50,9 @@ echo '<br><br>';
 
 require 'Product.php';
 
-$banana = new Product ('banana',6,1,0.06);
-$apple = new Product ('apple',3,1.5,0.06);
-$wine = new Product ('wine',2,10,0.21);
+$banana = new Product ('banana',6,1,0.06, true);
+$apple = new Product ('apple',3,1.5,0.06, true);
+$wine = new Product ('wine',2,10,0.21, false);
 
 echo 'Class method:'.'<br>';
 echo '<br>';
@@ -60,3 +63,10 @@ echo '<br>';
 echo 'Total vat:'.'<br>';
 echo $banana->getTax() + $apple->getTax() + $wine->getTax().'<br>';
 echo '<br><br>';
+
+echo 'Use Case #2:'.'<br>';
+echo '<br>';
+echo 'Total discount:'.'<br>';
+echo $banana->getDiscount().'<br>';
+echo $apple->getDiscount().'<br>';
+echo '<br>';
