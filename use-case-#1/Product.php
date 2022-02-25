@@ -12,13 +12,15 @@ class Product
     public int $amount;
     public float $price;
     public float $vat;
+    public bool $isFruit;
 
-    function __construct(string $name, int $amount, float $price, float $vat)
+    function __construct(string $name, int $amount, float $price, float $vat, bool $isFruit)
     {
         $this->name = $name;
         $this->amount = $amount;
         $this->price = $price;
         $this->vat = $vat;
+        $this->isFruit = $isFruit;
     }
 
     public function getPrice(): float
@@ -29,5 +31,15 @@ class Product
     public function getTax(): float
     {
         return $this->amount * $this->price * $this->vat;
+    }
+
+    public function getDiscount(): string
+    {
+        $discount = 0;
+        if ($this->isFruit === true) {
+            $calculateDiscount = $this->amount * 0.5;
+            $discount = "The discount on all {$this->name}s is {$calculateDiscount}€";
+        }
+        return $discount;
     }
 }
